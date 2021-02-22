@@ -10,6 +10,7 @@ import {
 
 import makeStyles from './style';
 import Forms from './Forms/Forms';
+import Lists from './Lists/Lists';
 
 const Main = () => {
   const classes = makeStyles();
@@ -33,7 +34,7 @@ const Main = () => {
       <CardContent className={classes.cardContainer}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            {/* List */}
+            <Lists />
           </Grid>
         </Grid>
       </CardContent>
