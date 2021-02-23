@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   List,
   ListItem,
@@ -12,31 +12,18 @@ import {
 
 import { Delete, MoneyOff } from '@material-ui/icons';
 
+import { ExpenseTrackerContext } from '../../../context/context';
+
 import useStyles from './style';
 
 const Lists = () => {
+  const { deleteTransaction, transactions } = useContext(ExpenseTrackerContext);
+
   const classes = useStyles();
 
-  const transaction = [
-    {
-      id: 1,
-      type: 'Expense',
-      catagory: 'Business',
-      amount: 50,
-      date: 'Wed Dec 16',
-    },
-    { id: 2, type: 'Expense', catagory: 'Pet', amount: 50, date: 'Wed Dec 16' },
-    {
-      id: 3,
-      type: 'Income',
-      catagory: 'Salary',
-      amount: 150,
-      date: 'Wed Dec 16',
-    },
-  ];
   return (
     <List dense={false} className={classes.list}>
-      {transaction.map(transaction => (
+      {transactions.map(transaction => (
         <Slide
           direction="down"
           in
@@ -61,7 +48,11 @@ const Lists = () => {
               secondary={`$${transaction.amount} - ${transaction.date}`}
             />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete" onClick="">
+              <IconButton
+                edge="end"
+                aria-label="delete"
+                onClick={() => deleteTransaction(transaction.id)}
+              >
                 <Delete />
               </IconButton>
             </ListItemSecondaryAction>

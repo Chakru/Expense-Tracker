@@ -19,14 +19,14 @@ const Main = () => {
       <CardHeader title="Expense Tracker" />
       <CardContent>
         <Typography align="center" variant="h5">
-          Total Balance $100
+          Total Balance &#8377;
         </Typography>
         <Typography
           variant="subtitle1"
           style={{ lineHeight: '1.5em', marginTop: '20px' }}
         >
           {/* <InfoCard /> */}
-          Try Saying: Add income of $100 as salary on Monday
+          Try Saying: Add income of &#8377;100 as salary on Monday
         </Typography>
         <Divider />
         <Forms />
