@@ -20,7 +20,6 @@ const Lists = () => {
   const { deleteTransaction, transactions } = useContext(ExpenseTrackerContext);
 
   const classes = useStyles();
-
   return (
     <List dense={false} className={classes.list}>
       {transactions.map(transaction => (
@@ -44,8 +43,10 @@ const Lists = () => {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={transaction.catagory}
-              secondary={`$${transaction.amount} - ${transaction.date}`}
+              primary={transaction.category}
+              secondary={`${'\u20B9'} ${transaction.amount} - ${
+                transaction.date
+              }`}
             />
             <ListItemSecondaryAction>
               <IconButton
