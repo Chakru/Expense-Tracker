@@ -18,6 +18,7 @@ import {
   expenseCategories,
 } from '../../../constants/Categories';
 import DateFormat from '../../../utils/DateFormat';
+import CustomizedSnackbar from '../../Snackbar/CustomizedSnackbar';
 
 const initialState = {
   amount: '',
@@ -30,7 +31,9 @@ const Forms = () => {
   const classes = makeStyles();
   const [formData, setFormData] = useState(initialState);
   const { addTransaction } = useContext(ExpenseTrackerContext);
-  const { segment, speechState, toggleRecording } = useSpeechContext();
+  const { segment, toggleRecording } = useSpeechContext();
+  const [open, setOpen] = useState(false);
+
   const selectedCategory =
     formData.type === 'Income' ? incomeCategories : expenseCategories;
 
@@ -43,6 +46,7 @@ const Forms = () => {
       amount: Number(formData.amount),
       id: uuid(),
     };
+    setOpen(true);
     addTransaction(transaction);
     setFormData(initialState);
   };
@@ -88,21 +92,21 @@ const Forms = () => {
             break;
         }
       });
+      if (
+        segment.isFinal &&
+        formData.type &&
+        formData.category &&
+        formData.amount &&
+        formData.date
+      ) {
+        createTransaction();
+      }
     }
-    if (
-      segment.isFinal &&
-      formData.type &&
-      formData.category &&
-      formData.amount &&
-      formData.date
-    ) {
-      createTransaction();
-    }
-  }, [segment]);
+  }, []);
 
-  console.log(speechState);
   return (
     <Grid container spacing={2}>
+      <CustomizedSnackbar open={open} setOpen={setOpen} />
       <Grid item xs={12}>
         <Typography align="center" variant="subtitle2" gutterBottom>
           {segment && segment.words.map(w => w.value).join(' ')}
