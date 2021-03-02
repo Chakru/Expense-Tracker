@@ -1,6 +1,6 @@
 # Speechly Expense Tracker
 
-![Expense Tracker](\src\assets\ExpenseTrackerReadme.png)
+![Expense Tracker](\ExpenseTrackerReadme.png)
 
 Track your expense with a Complex Expense Budget Tracker. While building this application, many React & JavaScript concepts are used. Some of them are State Management in React, Context API, Local Storage, Material UI. But most importantly, have added voice capabilities in the applications using Speechly.
 
